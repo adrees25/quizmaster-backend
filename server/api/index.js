@@ -8,14 +8,14 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
   res.status(200).json({
-    message: "QuizMaster Backend is Running!"
+    message: "QuizMaster Backend is Running!",
   });
 });
 
 app.get("/health", (req, res) => {
   res.status(200).json({
     status: "OK",
-    message: "QuizMaster API is working"
+    message: "QuizMaster API is working",
   });
 });
 
