@@ -9,19 +9,29 @@ const mongoose = require("mongoose");
 
 const app = express();
 
+// Middleware
 app.use(cors());
 app.use(express.json());
 
+// Test route
 app.get("/", (req, res) => {
-  res.send("QuizMaster Backend is Running!");
+  res.status(200).send("QuizMaster Backend is Running!");
 });
 
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log("MongoDB Connected"))
-  .catch((err) => console.log("MongoDB Connection Error:", err));
+// MongoDB connection
+mongoose
+  .connect(process.env.MONGODB_URI)
+  .then(() => {
+    console.log("MongoDB Connected Successfully");
+  })
+  .catch((err) => {
+    console.error("MongoDB Connection Error:", err.message);
+  });
 
-const PORT = 5000;
+// Port
+const PORT = process.env.PORT || 5000;
 
+// Start server
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`QuizMaster Backend running on port ${PORT}`);
 });
